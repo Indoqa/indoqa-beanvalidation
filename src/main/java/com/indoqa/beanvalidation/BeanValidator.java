@@ -25,6 +25,7 @@ public final class BeanValidator<T> {
 
     private List<PropertyValidator> propertyValidators = new ArrayList<>();
     private List<BiFunction<T, PropertyValidator, ValidationResult>> nestedValidators = new ArrayList<>();
+    private String propertySeparator = ".";
 
     private BeanValidator() {
         super();

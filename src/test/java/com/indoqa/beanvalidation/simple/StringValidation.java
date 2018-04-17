@@ -41,6 +41,19 @@ public class StringValidation extends AbstractValidatorTest {
     }
 
     @Test
+    public void isEmptyNullInvalid() {
+        SimpleBean simpleBean = new SimpleBean();
+        simpleBean.setId(null);
+
+        ValidationResult result = PropertyValidator.forMethod(SimpleBean::getId).isEmpty().validate(simpleBean);
+        assertNotNull(result);
+        assertResultHasErrors(result);
+        assertResultIsInvalid(result);
+
+        assertSingleValidationError(result, "id", "is_empty");
+    }
+
+    @Test
     public void isEmptyValid() {
         SimpleBean simpleBean = new SimpleBean();
         simpleBean.setId("");
@@ -67,6 +80,19 @@ public class StringValidation extends AbstractValidatorTest {
     }
 
     @Test
+    public void isNotEmptyNullInvalid() {
+        SimpleBean simpleBean = new SimpleBean();
+        simpleBean.setId(null);
+
+        ValidationResult result = PropertyValidator.forMethod(SimpleBean::getId).isNotEmpty().validate(simpleBean);
+        assertNotNull(result);
+        assertResultHasErrors(result);
+        assertResultIsInvalid(result);
+
+        assertSingleValidationError(result, "id", "is_not_empty");
+    }
+
+    @Test
     public void isNotEmptyValid() {
         SimpleBean simpleBean = new SimpleBean();
         simpleBean.setId("abc");
@@ -78,4 +104,6 @@ public class StringValidation extends AbstractValidatorTest {
 
         assertEmptyValidationErrors(result, "id");
     }
+
+
 }

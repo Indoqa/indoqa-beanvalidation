@@ -129,4 +129,42 @@ public class NestedPropertyValidatorTest extends AbstractValidatorTest {
         assertResultIsInvalid(result);
         this.assertValidationErrors(result, "nested.simpleProperty.items", 2, "is_not_null", "is_not_empty");
     }
+
+    @Test
+    public void testNestedNtestedPropertyInvalidSeparator() {
+        SimpleProperty simpleProperty = new SimpleProperty();
+        simpleProperty.setItems(null);
+        NestedSimpleProperty nested = new NestedSimpleProperty();
+        nested.setSimpleProperty(simpleProperty);
+        SimpleBean simpleBean = new SimpleBean();
+        simpleBean.setNested(nested);
+
+        BeanValidator<SimpleProperty> simplePropertyBeanValidator = BeanValidator
+            .forClass(SimpleProperty.class)
+            .addPropertyValidator(PropertyValidator.forMethod(SimpleProperty::getItems).isNotNull().isNotEmpty());
+
+        BeanValidator<NestedSimpleProperty> nestedSimplePropertyBeanValidator = BeanValidator
+            .forClass(NestedSimpleProperty.class)
+            .addPropertyValidator(PropertyValidator
+                .forMethod(NestedSimpleProperty::getSimpleProperty)
+                .propertySeparator("~")
+                .withBeanValidator(simplePropertyBeanValidator))
+            .addPropertyValidator(PropertyValidator
+                .forMethod(NestedSimpleProperty::getNestedText)
+                .isNotNull());
+
+        ValidationResult result = BeanValidator
+            .forClass(SimpleBean.class)
+            .addPropertyValidator(PropertyValidator
+                .forMethod(SimpleBean::getNested)
+                .propertySeparator("#")
+                .withBeanValidator(nestedSimplePropertyBeanValidator))
+            .validateAll(simpleBean);
+
+        assertNotNull(result);
+        assertResultHasErrors(result);
+        assertResultIsInvalid(result);
+        this.assertValidationErrors(result, "nested#simpleProperty~items", 2, "is_not_null", "is_not_empty");
+        this.assertValidationErrors(result, "nested#nestedText", 1, "is_not_null");
+    }
 }

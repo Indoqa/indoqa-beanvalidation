@@ -103,6 +103,19 @@ public abstract class AbstractCollectionsValidations<T> extends AbstractValidato
     }
 
     @Test
+    public void isEmptyNullInvalid() {
+        SimpleBean simpleBean = new SimpleBean();
+        setNullValue(simpleBean);
+
+        ValidationResult result = getPropertyValidator().isEmpty().validate(simpleBean);
+        assertNotNull(result);
+        assertResultHasErrors(result);
+        assertResultIsInvalid(result);
+
+        assertSingleValidationError(result, getProperty(), "is_empty");
+    }
+
+    @Test
     public void isEmptyValid() {
         SimpleBean simpleBean = new SimpleBean();
         setEmptyValue(simpleBean);
@@ -119,6 +132,19 @@ public abstract class AbstractCollectionsValidations<T> extends AbstractValidato
     public void isNotEmptyInvalid() {
         SimpleBean simpleBean = new SimpleBean();
         setEmptyValue(simpleBean);
+
+        ValidationResult result = getPropertyValidator().isNotEmpty().validate(simpleBean);
+        assertNotNull(result);
+        assertResultHasErrors(result);
+        assertResultIsInvalid(result);
+
+        assertSingleValidationError(result, getProperty(), "is_not_empty");
+    }
+
+    @Test
+    public void isNotEmptyNullInvalid() {
+        SimpleBean simpleBean = new SimpleBean();
+        setNullValue(simpleBean);
 
         ValidationResult result = getPropertyValidator().isNotEmpty().validate(simpleBean);
         assertNotNull(result);

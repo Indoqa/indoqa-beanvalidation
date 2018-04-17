@@ -25,6 +25,7 @@ public class SimpleBean {
     private String id;
     private List<String> messages;
     private boolean isSimple;
+    private Boolean isComplicated;
     private Map<String, String> mappings;
     private Integer[] numbers;
     private int[] ints;
@@ -55,6 +56,14 @@ public class SimpleBean {
 
     public void setSimple(boolean simple) {
         isSimple = simple;
+    }
+
+    public Boolean getComplicated() {
+        return isComplicated;
+    }
+
+    public void setComplicated(Boolean complicated) {
+        isComplicated = complicated;
     }
 
     public SimpleProperty getProperty() {

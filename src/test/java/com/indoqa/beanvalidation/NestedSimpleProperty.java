@@ -19,7 +19,9 @@ package com.indoqa.beanvalidation;
 
 public class NestedSimpleProperty {
 
-    SimpleProperty simpleProperty;
+    private SimpleProperty simpleProperty;
+
+    private String nestedText;
 
     public SimpleProperty getSimpleProperty() {
         return simpleProperty;
@@ -27,5 +29,13 @@ public class NestedSimpleProperty {
 
     public void setSimpleProperty(SimpleProperty simpleProperty) {
         this.simpleProperty = simpleProperty;
+    }
+
+    public String getNestedText() {
+        return nestedText;
+    }
+
+    public void setNestedText(String nestedText) {
+        this.nestedText = nestedText;
     }
 }
