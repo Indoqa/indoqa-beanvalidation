@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
  * <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">method reference</a>.
  * <br />Internally it uses a {@link SerializedLambda} to get the method name via {@link SerializedLambda#getImplMethodName()}.
  */
-public class PropertyExtractor {
+public final class PropertyExtractor {
 
     private static final String METHOD_WRITE_REPLACE = "writeReplace";
 

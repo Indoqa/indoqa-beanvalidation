@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 
-public class BeanValidator<T> {
+public final class BeanValidator<T> {
 
     private List<PropertyValidator> propertyValidators = new ArrayList<>();
     private List<BiFunction<T, PropertyValidator, ValidationResult>> nestedValidators = new ArrayList<>();

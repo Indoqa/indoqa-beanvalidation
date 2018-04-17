@@ -151,22 +151,30 @@ public class PropertyValidator<P, R extends Object> {
             if (value instanceof String) {
                 return ((String) value).isEmpty();
             }
-            if (value instanceof Collection) {
-                return ((Collection) value).isEmpty();
-            }
-            if (value instanceof Map) {
-                return ((Map) value).isEmpty();
-            }
-            if (value instanceof Object[]) {
-                return ((Object[]) value).length == 0;
-            }
-            if (value.getClass().isArray()) {
-                return Array.getLength(value) == 0;
+            Boolean collectionsIsEmpty = getCollectionsIsEmpty(value);
+            if (collectionsIsEmpty != null) {
+                return collectionsIsEmpty;
             }
 
             return true;
         });
         return this;
+    }
+
+    private Boolean getCollectionsIsEmpty(Object value) {
+        if (value instanceof Collection) {
+            return ((Collection) value).isEmpty();
+        }
+        if (value instanceof Map) {
+            return ((Map) value).isEmpty();
+        }
+        if (value instanceof Object[]) {
+            return ((Object[]) value).length == 0;
+        }
+        if (value.getClass().isArray()) {
+            return Array.getLength(value) == 0;
+        }
+        return null;
     }
 
     /**
@@ -187,17 +195,9 @@ public class PropertyValidator<P, R extends Object> {
             if (value instanceof String) {
                 return ((String) value).isEmpty();
             }
-            if (value instanceof Collection) {
-                return ((Collection) value).isEmpty();
-            }
-            if (value instanceof Map) {
-                return ((Map) value).isEmpty();
-            }
-            if (value instanceof Object[]) {
-                return ((Object[]) value).length == 0;
-            }
-            if (value.getClass().isArray()) {
-                return Array.getLength(value) == 0;
+            Boolean collectionsIsEmpty = getCollectionsIsEmpty(value);
+            if (collectionsIsEmpty != null) {
+                return collectionsIsEmpty;
             }
 
             return false;
