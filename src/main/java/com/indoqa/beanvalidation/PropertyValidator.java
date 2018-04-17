@@ -229,7 +229,7 @@ public class PropertyValidator<P, R extends Object> {
     }
 
     /**
-     * Validates that the property is <b>true</b>.
+     * Validates that the property is <b>false</b>.
      * <br/>
      * The method will:
      * <ul>
