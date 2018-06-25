@@ -26,7 +26,7 @@
   </parent>
 
   <artifactId>indoqa-beanvalidation</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>Indoqa Beanvalidation</name>
   <description>Validating beans with Java 8 Lambda expressions or method references.</description>
@@ -35,6 +35,7 @@
     <connection>scm:git:git@github.com:Indoqa/indoqa-beanvalidation.git</connection>
     <developerConnection>scm:git:git@github.com:Indoqa/indoqa-beanvalidation.git</developerConnection>
     <url>https://github.com/Indoqa/indoqa-beanvalidation</url>
+    <tag>indoqa-beanvalidation-1.0.0</tag>
   </scm>
 
   <properties>
