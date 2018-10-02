@@ -70,11 +70,11 @@ pipeline {
       script {
         if(currentBuild.resultIsBetterOrEqualTo('SUCCESS')) {
           slackSend channel: '#ci_oss', color: '#008000', tokenCredentialId: 'Slack_IntegrationToken',
-		message: '${env.JOB_NAME} has recovered at ${env.BUILD_NUMBER} status: ${currentBuild.result} (<a href="${env.BUILD_URL}">Open</a>)'
+		message: '${env.JOB_NAME} has recovered at ${env.BUILD_NUMBER} status: ${currentBuild.result} (<${env.BUILD_URL}|Open>)'
         }
         if(currentBuild.resultIsWorseOrEqualTo('FAILURE')) {
           slackSend channel: '#ci_oss', color: '#800000', tokenCredentialId: 'Slack_IntegrationToken',
-		message: '${env.JOB_NAME} has failed at ${env.BUILD_NUMBER} status: ${currentBuild.result} (<a href="${env.BUILD_URL}">Open</a>)'
+		message: '${env.JOB_NAME} has failed at ${env.BUILD_NUMBER} status: ${currentBuild.result} (<${env.BUILD_URL}|Open>)'
         }
       }
     }
