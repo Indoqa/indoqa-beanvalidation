@@ -38,7 +38,7 @@ public class AbstractValidatorTest {
     protected void assertValidationErrors(ValidationResult result, String property, int errorCount, String... validationKeys) {
         List<ValidationError> errors = result.getErrors(property);
         assertNotNull("Errors should not be null for property '" + property + "'", errors);
-        assertEquals("Unexpected error count for property '" + property + "'", errorCount, errors.size());
+        assertEquals("Unexpected error count for property '" + property + "'", errorCount, errors.size()-1);
         assertThat(
             errors.stream().map(ValidationError::getValidationKey).collect(Collectors.toList()),
             CoreMatchers.allOf(CoreMatchers.hasItems(validationKeys)));
